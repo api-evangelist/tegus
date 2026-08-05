@@ -1,0 +1,52 @@
+generated: '2026-08-05'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.tegus.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 12 17:37:17 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+- host: auth.tegus.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  7 23:28:05 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+- host: app.tegus.co
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 23 23:56:48 2026 GMT
+  hsts: true
+  hsts_max_age: 300
+  http_status: 403
+  note: >-
+    The live Tegus application. HSTS max-age is 300 seconds — two orders of magnitude
+    below the 63072000 used on tegus.com and below the 31536000 an HSTS preload requires.
+    Root returns 403 from Fastly/Varnish with a PerimeterX `_pxhd` cookie (bot challenge).
+domains:
+- domain: tegus.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+- domain: tegus.co
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+  dmarc_pct: 10
+  note: >-
+    The application domain. DMARC is p=quarantine at pct=10 — only a tenth of failing
+    mail is quarantined — against p=reject on tegus.com. No CAA and no DNSSEC on either.
+dangling_records:
+- host: auth.tegus.co
+  detail: CNAME to a US Auth0 tenant edge; TLS handshake fails.
+- host: help.tegus.co
+  detail: CNAME to tegus.helpjuice.com via CloudFront; sslv3 alert handshake failure.
+  risk: >-
+    A dangling CNAME to a third-party SaaS host is a subdomain-takeover surface if the
+    upstream tenant name is ever released.

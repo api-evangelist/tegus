@@ -1,0 +1,103 @@
+generated: '2026-08-05'
+method: probed
+source: https://www.tegus.com/
+note: >-
+  Tegus is not deprecating an API — the whole standalone developer surface was retired
+  when AlphaSense completed its acquisition of Tegus (announced June 2024, closed
+  8 July 2024, ~$930M). What remains at tegus.com is a ten-page marketing/legal site
+  that routes visitors to AlphaSense. Everything below is what was observed on
+  2026-08-05, not a policy Tegus publishes.
+status: retired-into-acquirer
+acquirer:
+  name: AlphaSense
+  site: https://www.alpha-sense.com/
+  developer_portal: https://developer.alpha-sense.com/
+  network_profile: all/alphasense
+  closed: '2024-07-08'
+versioning:
+  scheme: unknown
+  policy_url: null
+  note: No versioning policy is published at any public Tegus URL.
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  note: >-
+    No RFC 8594 Sunset/Deprecation policy is published. The retirement was executed by
+    decommissioning DNS, not by a documented deprecation window.
+sla:
+  url: null
+status_page:
+  url: null
+  former_url: https://status.tegus.com/
+  state: decommissioned
+  detail: >-
+    status.tegus.com formerly carried a component named "Our Public API". The host now
+    returns NXDOMAIN; the last Internet Archive capture is 2025-04-11.
+developer_portal:
+  url: null
+  former_url: https://tegus.readme.io/
+  state: inactive
+  detail: >-
+    The ReadMe-hosted Tegus developer hub responds 302 to /inactive, ReadMe's marker for
+    a deactivated project.
+decommissioned_hosts:
+- host: api.tegus.com
+  result: NXDOMAIN
+- host: app.tegus.com
+  result: NXDOMAIN
+- host: status.tegus.com
+  result: NXDOMAIN
+- host: developer.tegus.com
+  result: NXDOMAIN
+- host: docs.tegus.com
+  result: NXDOMAIN
+- host: api.tegus.co
+  result: NXDOMAIN
+- host: docs.tegus.co
+  result: NXDOMAIN
+- host: developer.tegus.co
+  result: NXDOMAIN
+- host: status.tegus.co
+  result: NXDOMAIN
+- host: auth.tegus.co
+  result: dangling DNS (CNAME to a US Auth0 tenant edge; TLS handshake fails)
+- host: help.tegus.co
+  result: dangling DNS (CNAME to tegus.helpjuice.com via CloudFront; TLS handshake fails)
+surviving_hosts:
+- host: tegus.com
+  status: 200
+  role: marketing / legal landing page ("Tegus is now part of AlphaSense")
+- host: www.tegus.com
+  status: 200
+  role: same site; 10 URLs in sitemap.xml, all marketing/legal/expert-recruiting
+- host: auth.tegus.com
+  status: 200
+  role: >-
+    Auth0 tenant for platform sign-in; DNS CNAMEs to tegus.alphasense.auth0app.com.
+    Root path 302s to https://tegus.com/.
+- host: app.tegus.co
+  status: 403
+  role: >-
+    The live Tegus web application, on the second-level domain tegus.co. Root and every
+    spec path return 403 from Fastly/Varnish with a PerimeterX `_pxhd` cookie — a bot
+    challenge. /.well-known/* paths route and return a clean 404, so the application is
+    up; it simply publishes no discovery documents.
+- host: tegus.co / www.tegus.co
+  status: 200
+  role: 308/redirect chain terminating at https://tegus.com/
+successor_surface:
+  note: >-
+    The Tegus expert-call transcript corpus is now reachable through the AlphaSense
+    developer platform (OAuth 2.0 protected GraphQL at https://api.alpha-sense.com/gql).
+    Profiled separately at all/alphasense.
+x-evidence:
+  fetched: '2026-08-05'
+  probes:
+  - url: https://www.tegus.com/
+    status: 200
+  - url: https://www.tegus.com/sitemap.xml
+    status: 200
+  - url: https://tegus.readme.io/
+    status: 302
+  - url: https://auth.tegus.com/
+    status: 200

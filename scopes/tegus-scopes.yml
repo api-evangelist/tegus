@@ -1,0 +1,89 @@
+generated: '2026-08-05'
+method: probed
+source: https://auth.tegus.com/.well-known/openid-configuration
+docs: https://auth.tegus.com/.well-known/openid-configuration
+note: >-
+  These are the scopes advertised by the Tegus identity provider's OIDC discovery
+  document (scopes_supported). They are the standard OpenID Connect / Auth0 identity
+  scopes — Tegus publishes no product API scope reference, because the Tegus developer
+  hub is retired (tegus.readme.io -> /inactive) and the API surface moved to AlphaSense.
+  No API-resource scopes are asserted here; none are published.
+schemes:
+- name: TegusOAuth2
+  source: well-known/tegus-openid-configuration.json
+  issuer: https://auth.tegus.com/
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.tegus.com/authorize
+    tokenUrl: https://auth.tegus.com/oauth/token
+  - flow: clientCredentials
+    tokenUrl: https://auth.tegus.com/oauth/token
+  - flow: deviceCode
+    deviceAuthorizationUrl: https://auth.tegus.com/oauth/device/code
+    tokenUrl: https://auth.tegus.com/oauth/token
+scopes:
+- scope: openid
+  description: Request an ID token; signals an OpenID Connect authentication request.
+  kind: identity
+  sources: [well-known/tegus-openid-configuration.json]
+- scope: profile
+  description: Basic profile claims for the authenticated user.
+  kind: identity
+  sources: [well-known/tegus-openid-configuration.json]
+- scope: offline_access
+  description: Issue a refresh token so the client can act after the access token expires.
+  kind: identity
+  sources: [well-known/tegus-openid-configuration.json]
+- scope: name
+  description: The user's full name claim.
+  kind: identity
+  sources: [well-known/tegus-openid-configuration.json]
+- scope: given_name
+  description: The user's given name claim.
+  kind: identity
+  sources: [well-known/tegus-openid-configuration.json]
+- scope: family_name
+  description: The user's family name claim.
+  kind: identity
+  sources: [well-known/tegus-openid-configuration.json]
+- scope: nickname
+  description: The user's nickname claim.
+  kind: identity
+  sources: [well-known/tegus-openid-configuration.json]
+- scope: email
+  description: The user's email address claim.
+  kind: identity
+  sources: [well-known/tegus-openid-configuration.json]
+- scope: email_verified
+  description: Whether the user's email address has been verified.
+  kind: identity
+  sources: [well-known/tegus-openid-configuration.json]
+- scope: picture
+  description: The user's profile picture URL.
+  kind: identity
+  sources: [well-known/tegus-openid-configuration.json]
+- scope: created_at
+  description: When the user account was created.
+  kind: identity
+  sources: [well-known/tegus-openid-configuration.json]
+- scope: identities
+  description: The linked identity-provider connections for the user.
+  kind: identity
+  sources: [well-known/tegus-openid-configuration.json]
+- scope: phone
+  description: The user's phone number claim.
+  kind: identity
+  sources: [well-known/tegus-openid-configuration.json]
+- scope: address
+  description: The user's address claim.
+  kind: identity
+  sources: [well-known/tegus-openid-configuration.json]
+coverage:
+  identity_scopes: 14
+  api_resource_scopes: 0
+  api_resource_scopes_note: >-
+    No product API audience or resource scopes are published at any public Tegus URL.
+x-evidence:
+  fetched: '2026-08-05'
+  url: https://auth.tegus.com/.well-known/openid-configuration
+  http_status: 200

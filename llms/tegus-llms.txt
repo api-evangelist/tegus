@@ -1,0 +1,61 @@
+# Tegus
+
+> Tegus is an investment-research platform for institutional investors — an expert-call
+> transcript library (260,000+ compliance-reviewed 1:1 expert transcripts across 27,000+
+> public and private companies), company financial models and KPIs, SEC filings and an
+> Excel add-in. AlphaSense completed its acquisition of Tegus on 8 July 2024 for ~$930M.
+> Tegus now operates as a brand inside AlphaSense: tegus.com is a ten-page marketing and
+> legal site that routes visitors to AlphaSense, the live application runs at
+> app.tegus.co, and the developer surface has been retired.
+
+## Status of the developer surface
+
+- The Tegus developer hub at https://tegus.readme.io/ returns HTTP 302 to /inactive.
+- status.tegus.com — which formerly carried a component named "Our Public API" — no
+  longer resolves (NXDOMAIN). Last Internet Archive capture 2025-04-11.
+- api.tegus.com, app.tegus.com, developer.tegus.com, docs.tegus.com, api.tegus.co,
+  docs.tegus.co, developer.tegus.co and status.tegus.co all return NXDOMAIN.
+- No OpenAPI, AsyncAPI, GraphQL SDL, MCP server, A2A agent card, llms.txt or
+  security.txt is published at any tegus.com or tegus.co host.
+- Programmatic access to the Tegus corpus is now delivered through the AlphaSense
+  developer platform. See https://developer.alpha-sense.com/.
+
+## Machine-readable documents that are live
+
+- [OpenID Connect discovery](https://auth.tegus.com/.well-known/openid-configuration):
+  OIDC 1.0 discovery for the Tegus identity provider (an Auth0 tenant operated by
+  AlphaSense). HTTP 200, application/json.
+- [OAuth 2.0 authorization server metadata](https://auth.tegus.com/.well-known/oauth-authorization-server):
+  RFC 8414 metadata for the same issuer. HTTP 200.
+- [JSON Web Key Set](https://auth.tegus.com/.well-known/jwks.json): RFC 7517 signing
+  keys for the issuer. HTTP 200.
+
+## Site
+
+- [Tegus](https://www.tegus.com/): landing page — "Tegus is now part of AlphaSense".
+- [Tegus Platform sign-in](https://app.tegus.co/users/sign_in): the live application.
+- [Compliance](https://tegus.com/compliance): how expert-call transcripts are reviewed.
+- [Tegus for experts](https://tegus.com/experts): expert-network recruiting.
+- [Terms of Service](https://tegus.com/terms)
+- [Third-party transcript contributor terms](https://tegus.com/third-party-terms)
+- [Privacy Notice](https://www.alpha-sense.com/privacy-notice/) (served by AlphaSense)
+- [Do not sell my personal information](https://tegus.com/do-not-sell)
+- [Start a Tegus trial](https://www.alpha-sense.com/trial-request-tegus-ref/) (AlphaSense)
+- [YouTube](https://www.youtube.com/channel/UCsGxYKyEAcper1LW5vlDdJw)
+
+## API Evangelist artifacts in this repository
+
+- well-known/tegus-well-known.yml — every /.well-known/* path probed, with status.
+- well-known/tegus-openid-configuration.json — verbatim OIDC discovery document.
+- well-known/tegus-oauth-authorization-server.json — verbatim RFC 8414 metadata.
+- well-known/tegus-jwks.json — verbatim JWKS.
+- authentication/tegus-authentication.yml — the identity/authorization profile.
+- scopes/tegus-scopes.yml — the 14 OIDC identity scopes advertised by the issuer.
+- conformance/tegus-conformance.yml — standards conformance read off the discovery docs.
+- lifecycle/tegus-lifecycle.yml — the retirement of the standalone developer surface.
+- security/tegus-domain-security.yml — TLS/HSTS/DNSSEC/CAA/SPF/DMARC probe results.
+
+---
+generated: 2026-08-05
+method: generated
+source: apis.yml + repo artifacts; no /llms.txt is published at any tegus.com or tegus.co host (404)

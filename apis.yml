@@ -1,23 +1,116 @@
 aid: tegus
 name: Tegus
-description: 'Tegus is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
 url: https://raw.githubusercontent.com/api-evangelist/tegus/refs/heads/main/apis.yml
+description: 'Tegus is an investment-research platform for institutional investors, built around an
+  expert-call transcript library of more than 260,000 compliance-reviewed 1:1 transcripts covering 27,000+
+  public and private companies, alongside company financial models and KPIs, SEC filings, earnings-call
+  transcripts and a Tegus Formulas Excel add-in that streams those datapoints into analyst workbooks.
+  AlphaSense completed its acquisition of Tegus on 8 July 2024 for approximately $930M, and Tegus now
+  operates as a brand inside AlphaSense. The standalone Tegus developer surface has been retired with
+  it: the ReadMe-hosted developer hub at tegus.readme.io returns 302 to /inactive, the status page that
+  formerly carried an "Our Public API" component no longer resolves, and no OpenAPI, GraphQL SDL, MCP
+  server or agent card is published at any tegus.com or tegus.co host. The only live machine-readable
+  documents in the namespace are the OpenID Connect discovery, RFC 8414 authorization-server metadata
+  and JWKS served by auth.tegus.com. Programmatic access to the Tegus corpus is now delivered through
+  the AlphaSense developer platform, profiled separately in this network.'
+image: https://tegus.com/images/tegus-seo-img.png
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-05'
 modified: '2026-08-05'
 tags:
-- Company
-apis: []
+- Investment Research
+- Expert Networks
+- Market Intelligence
+- Financial Data
+- Transcripts
+- Private Markets
+- Equity Research
+- OpenID Connect
+- Acquired
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: tegus:identity
+  name: Tegus Identity (OpenID Connect)
+  description: The OpenID Connect / OAuth 2.0 authorization server that fronts sign-in for the Tegus
+    platform. It is an Auth0 tenant operated by AlphaSense (DNS CNAMEs to tegus.alphasense.auth0app.com)
+    and it publishes live, anonymous OIDC Discovery 1.0 and RFC 8414 metadata plus a JWKS. It advertises
+    the authorization-code, client-credentials, device-code, refresh-token and token-exchange grants,
+    PKCE, DPoP, dynamic client registration, CIBA and back-channel logout. It is the identity layer
+    of the platform, not a product data API — no Tegus resource API contract is published anywhere public.
+  humanURL: https://auth.tegus.com/.well-known/openid-configuration
+  baseURL: https://auth.tegus.com
+  tags:
+  - Identity
+  - OpenID Connect
+  - OAuth 2.0
+  - Authentication
+  properties:
+  - type: OpenIDConnect
+    url: https://auth.tegus.com/.well-known/openid-configuration
+  - type: Authentication
+    url: authentication/tegus-authentication.yml
+  - type: OAuthScopes
+    url: scopes/tegus-scopes.yml
+  - type: WellKnown
+    url: well-known/tegus-well-known.yml
 common:
 - type: Website
+  url: https://www.tegus.com/
+- type: Login
+  url: https://app.tegus.co/users/sign_in
+- type: SignUp
+  url: https://www.alpha-sense.com/trial-request-tegus-ref/
+- type: TermsOfService
+  url: https://tegus.com/terms
+- type: PrivacyPolicy
+  url: https://www.alpha-sense.com/privacy-notice/
+- type: Support
+  url: https://help.alpha-sense.com/
+- type: YouTube
+  url: https://www.youtube.com/channel/UCsGxYKyEAcper1LW5vlDdJw
+- type: SecondaryMarket
   url: https://forgeglobal.com/tegus_stock/
+- type: WellKnown
+  url: well-known/tegus-well-known.yml
+- type: Authentication
+  url: authentication/tegus-authentication.yml
+- type: OAuthScopes
+  url: scopes/tegus-scopes.yml
+- type: Conformance
+  url: conformance/tegus-conformance.yml
+- type: Lifecycle
+  url: lifecycle/tegus-lifecycle.yml
+- type: DomainSecurity
+  url: security/tegus-domain-security.yml
+- type: LLMsTxt
+  url: llms/tegus-llms.txt
+x-enrichment:
+  date: '2026-08-05'
+  status: minimal
+  artifacts_added: 10
+  pass: local-v1
+x-coverage:
+  state: none
+  reason: defunct
+  detail: 'AlphaSense absorbed Tegus in July 2024: the ReadMe-hosted Tegus developer hub now 302s to
+    /inactive, status.tegus.com (which carried an "Our Public API" component) and api/docs/developer.tegus.com|.co
+    all return NXDOMAIN, and tegus.com is a ten-page marketing site whose only live machine-readable
+    documents are the Auth0 OIDC discovery, RFC 8414 metadata and JWKS on auth.tegus.com.'
+  evidence:
+  - url: https://tegus.readme.io/
+    status: 302
+  - url: https://www.tegus.com/.well-known/security.txt
+    status: 404
+  - url: https://www.tegus.com/openapi.json
+    status: 404
+  - url: https://app.tegus.co/openapi.json
+    status: 403
+  - url: https://auth.tegus.com/.well-known/openid-configuration
+    status: 200
+  checked: '2026-08-05'

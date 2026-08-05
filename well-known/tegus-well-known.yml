@@ -1,0 +1,155 @@
+generated: '2026-08-05'
+method: probed
+source: https://auth.tegus.com/.well-known/openid-configuration
+note: >-
+  Tegus was fully acquired by AlphaSense (July 2024). The only host in the tegus.com
+  namespace that still serves machine-readable discovery documents is auth.tegus.com,
+  the Auth0 tenant that fronts sign-in for the Tegus platform (CNAME chain resolves to
+  tegus.alphasense.auth0app.com). The former product/API hosts (api.tegus.com,
+  app.tegus.com, status.tegus.com) no longer resolve in DNS. The live Tegus web
+  application is on the SECOND-LEVEL DOMAIN tegus.co (app.tegus.co) — probed separately
+  below — and is fronted by a PerimeterX/Fastly bot challenge.
+hosts:
+- host: https://auth.tegus.com
+  role: identity provider (Auth0 tenant, AlphaSense-operated)
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: application/json
+    file: tegus-openid-configuration.json
+    spec: OpenID Connect Discovery 1.0
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    file: tegus-oauth-authorization-server.json
+    spec: RFC 8414 OAuth 2.0 Authorization Server Metadata
+  - path: /.well-known/jwks.json
+    status: 200
+    content_type: application/json
+    file: tegus-jwks.json
+    spec: RFC 7517 JSON Web Key Set
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://www.tegus.com
+  role: marketing / legal site
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /swagger.json
+    status: 404
+  - path: /graphql
+    status: 404
+- host: https://tegus.com
+  role: apex (redirect target of auth.tegus.com root)
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://app.tegus.co
+  role: >-
+    the live Tegus web application (second-level domain tegus.co, linked as "Tegus
+    Platform" sign-in from tegus.com). Root returns HTTP 403 from Fastly/Varnish with a
+    PerimeterX `_pxhd` cookie — a bot challenge, not an auth redirect.
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 403
+    note: bot challenge
+  - path: /openapi.json
+    status: 403
+    note: bot challenge
+  - path: /swagger.json
+    status: 403
+    note: bot challenge
+  - path: /api-docs
+    status: 403
+    note: bot challenge
+  - path: /graphql
+    status: 403
+    note: bot challenge
+unresolvable_hosts:
+- host: api.tegus.com
+  result: NXDOMAIN
+- host: app.tegus.com
+  result: NXDOMAIN
+- host: status.tegus.com
+  result: NXDOMAIN
+  note: >-
+    Formerly served a status page whose components included "Our Public API"; the host
+    no longer resolves. Last Internet Archive capture 2025-04-11.
+- host: developer.tegus.com
+  result: NXDOMAIN
+- host: docs.tegus.com
+  result: NXDOMAIN
+- host: api.tegus.co
+  result: NXDOMAIN
+- host: docs.tegus.co
+  result: NXDOMAIN
+- host: developer.tegus.co
+  result: NXDOMAIN
+- host: status.tegus.co
+  result: NXDOMAIN
+- host: auth.tegus.co
+  result: dangling
+  note: >-
+    DNS CNAMEs to a US Auth0 tenant edge (edge.tenants.us.auth0.com) but the TLS
+    handshake fails — a decommissioned custom domain still pointed at Auth0.
+- host: help.tegus.co
+  result: dangling
+  note: >-
+    DNS CNAMEs to tegus.helpjuice.com via CloudFront but the TLS handshake fails
+    (sslv3 alert handshake failure) — the help centre moved to help.alpha-sense.com.
+x-evidence:
+  fetched: '2026-08-05'
+  probes:
+  - url: https://auth.tegus.com/.well-known/openid-configuration
+    status: 200
+  - url: https://auth.tegus.com/.well-known/oauth-authorization-server
+    status: 200
+  - url: https://auth.tegus.com/.well-known/jwks.json
+    status: 200
+  - url: https://www.tegus.com/.well-known/security.txt
+    status: 404
+  - url: https://tegus.readme.io/
+    status: 302
+    redirect: /inactive

@@ -1,0 +1,115 @@
+generated: '2026-08-05'
+method: probed
+source: https://auth.tegus.com/.well-known/openid-configuration
+docs: https://auth.tegus.com/.well-known/openid-configuration
+note: >-
+  Derived entirely from the live OpenID Connect Discovery and RFC 8414 metadata served
+  by auth.tegus.com. There is no published Tegus API reference to corroborate against —
+  the Tegus developer hub (tegus.readme.io) now 302s to /inactive and the product API
+  hosts no longer resolve. This profile therefore describes the identity layer of the
+  Tegus platform, not a product API contract.
+summary:
+  types:
+  - openIdConnect
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+  - implicit
+  - password
+  - refreshToken
+  - deviceCode
+  - tokenExchange
+  pkce: true
+  pkce_methods:
+  - S256
+  - plain
+  dpop: true
+  mtls: false
+  api_key_in: []
+schemes:
+- name: TegusOpenIDConnect
+  type: openIdConnect
+  openIdConnectUrl: https://auth.tegus.com/.well-known/openid-configuration
+  issuer: https://auth.tegus.com/
+  sources:
+  - well-known/tegus-openid-configuration.json
+- name: TegusOAuth2
+  type: oauth2
+  issuer: https://auth.tegus.com/
+  endpoints:
+    authorization: https://auth.tegus.com/authorize
+    token: https://auth.tegus.com/oauth/token
+    userinfo: https://auth.tegus.com/userinfo
+    jwks: https://auth.tegus.com/.well-known/jwks.json
+    revocation: https://auth.tegus.com/oauth/revoke
+    registration: https://auth.tegus.com/oidc/register
+    device_authorization: https://auth.tegus.com/oauth/device/code
+    backchannel_authentication: https://auth.tegus.com/bc-authorize
+    mfa_challenge: https://auth.tegus.com/mfa/challenge
+    global_token_revocation: https://auth.tegus.com/oauth/global-token-revocation/connection/{connectionName}
+  grant_types:
+  - client_credentials
+  - authorization_code
+  - refresh_token
+  - password
+  - implicit
+  - urn:ietf:params:oauth:grant-type:device_code
+  - urn:ietf:params:oauth:grant-type:token-exchange
+  - http://auth0.com/oauth/grant-type/password-realm
+  - http://auth0.com/oauth/grant-type/passwordless/otp
+  - http://auth0.com/oauth/grant-type/mfa-oob
+  - http://auth0.com/oauth/grant-type/mfa-otp
+  - http://auth0.com/oauth/grant-type/mfa-recovery-code
+  response_types:
+  - code
+  - token
+  - id_token
+  - code token
+  - code id_token
+  - token id_token
+  - code token id_token
+  response_modes:
+  - query
+  - fragment
+  - form_post
+  token_endpoint_auth_methods:
+  - client_secret_basic
+  - client_secret_post
+  - private_key_jwt
+  - none
+  token_endpoint_auth_signing_algs:
+  - RS256
+  - RS384
+  - PS256
+  id_token_signing_algs:
+  - HS256
+  - RS256
+  - PS256
+  dpop_signing_algs:
+  - ES256
+  code_challenge_methods:
+  - S256
+  - plain
+  dynamic_client_registration: true
+  backchannel_logout_supported: true
+  request_parameter_supported: false
+  request_uri_parameter_supported: false
+  sources:
+  - well-known/tegus-oauth-authorization-server.json
+observations:
+- id: implicit-grant-enabled
+  detail: >-
+    The implicit grant and the resource-owner password grant are both advertised in
+    grant_types_supported. Both are discouraged by OAuth 2.1 / BCP 225.
+- id: plain-pkce-allowed
+  detail: >-
+    code_challenge_methods_supported includes "plain" alongside S256.
+- id: hs256-id-tokens
+  detail: >-
+    id_token_signing_alg_values_supported includes the symmetric HS256 alongside RS256/PS256.
+x-evidence:
+  fetched: '2026-08-05'
+  url: https://auth.tegus.com/.well-known/openid-configuration
+  http_status: 200
+  content_type: application/json
