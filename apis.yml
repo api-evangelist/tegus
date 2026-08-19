@@ -16,7 +16,7 @@ description: 'Tegus is an investment-research platform for institutional investo
 image: https://tegus.com/images/tegus-seo-img.png
 x-type: company
 x-source: harvest:secondary-market
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-08-05'
 modified: '2026-08-05'
 tags:
