@@ -48,6 +48,10 @@ apis:
   tags:
   - Identity
   - OpenID Connect
+  - Authentication
+  tags_raw:
+  - Identity
+  - OpenID Connect
   - OAuth 2.0
   - Authentication
   properties:
