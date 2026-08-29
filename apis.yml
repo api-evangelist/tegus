@@ -13,6 +13,17 @@ description: 'Tegus is an investment-research platform for institutional investo
   documents in the namespace are the OpenID Connect discovery, RFC 8414 authorization-server metadata
   and JWKS served by auth.tegus.com. Programmatic access to the Tegus corpus is now delivered through
   the AlphaSense developer platform, profiled separately in this network.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://tegus.com/images/tegus-seo-img.png
 x-type: company
 x-source: harvest:secondary-market
