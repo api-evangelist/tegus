@@ -52,7 +52,6 @@ tags:
 - Transcripts
 - Private Markets
 - Equity Research
-- OpenID Connect
 - Acquired
 maintainers:
 - FN: Kin Lane
@@ -143,3 +142,5 @@ x-coverage:
   - url: https://auth.tegus.com/.well-known/openid-configuration
     status: 200
   checked: '2026-08-05'
+x-tags-removed:
+- OpenID Connect
