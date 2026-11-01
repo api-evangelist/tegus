@@ -64,5 +64,94 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Tegus is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/tegus_stock/
+Tegus is an investment-research platform for institutional investors, built around an expert-call transcript library of more than 260,000 compliance-reviewed 1:1 transcripts covering 27,000+ public and private companies, alongside company financial models and KPIs, SEC filings, earnings-call transcripts and a Tegus Formulas Excel add-in that streams those datapoints into analyst workbooks. AlphaSense completed its acquisition of Tegus on 8 July 2024 for approximately $930M, and Tegus now operates as a brand inside AlphaSense. The standalone Tegus developer surface has been retired with it: the ReadMe-hosted developer hub at tegus.readme.io returns 302 to /inactive, the status page that formerly carried an "Our Public API" component no longer resolves, and no OpenAPI, GraphQL SDL, MCP server or agent card is published at any tegus.com or tegus.co host. The only live machine-readable documents in the namespace are the OpenID Connect discovery, RFC 8414 authorization-server metadata and JWKS served by auth.tegus.com. Programmatic access to the Tegus corpus is now delivered through the AlphaSense developer platform, profiled separately in this network.
+
+**Areas:** Investment Research · Expert Networks · Market Intelligence · Financial Data · Transcripts · Private Markets · Equity Research · Acquired
+
+## Tegus on APIs.io
+
+Everything profiled for Tegus is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/tegus/](https://apis.io/providers/tegus/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Tegus Identity (OpenID Connect)](https://apis.io/apis/tegus/identity/) — The OpenID Connect / OAuth 2.0 authorization server that fronts sign-in for the Tegus platform. It is an Auth0 tenant operated by AlphaSense (DNS CNAMEs to…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Tegus Authentication](https://apis.io/security/tegus/tegus-authentication/)
+- [Tegus Domain Security](https://apis.io/security/tegus/tegus-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Tegus Scopes](https://apis.io/scopes/tegus/tegus-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.tegus.com/)
+- [Sign up](https://www.alpha-sense.com/trial-request-tegus-ref/)
+- [Support](https://help.alpha-sense.com/)
+- [Terms of service](https://tegus.com/terms)
+- [Privacy policy](https://www.alpha-sense.com/privacy-notice/)
+
+## API Evangelist rating
+
+**Kin Score 20.9** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 0.0 |
+| Contract governance | 4.5 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 16.7 |
+| Access clarity | 34.2 |
+
+**Agent readiness 15.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/tegus/](https://apis.io/providers/tegus/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Tegus: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/tegus/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
